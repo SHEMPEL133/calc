@@ -8,11 +8,12 @@ export default class Dispay extends Component {
 
     render() {
 
-        const {result} = this.props;
+        const {currentValue, previousValue, operator} = this.props; 
 
         return (
             <div className={this.clazz}>
-                {result}
+                <div>{previousValue + operator}</div>
+                <div>{currentValue}</div>
             </div>
         )
     }

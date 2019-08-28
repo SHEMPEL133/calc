@@ -10,7 +10,7 @@ export default class BtnBox extends Component {
 
     render() {
 
-        let { buttons, action } = this.props;
+        let { buttons, onChange } = this.props;
 
         const arr = buttons.map((item) => {
 
@@ -19,7 +19,7 @@ export default class BtnBox extends Component {
                 <Btn key={id}
                     label={label}
                     act={act}
-                    action={action} />
+                    onChange={onChange} />
             )
         });
 

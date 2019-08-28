@@ -8,11 +8,11 @@ export default class Btn extends Component {
 
     render() {
 
-        const { label, action, act } = this.props;
+        const { label, act, onChange } = this.props;
 
         return (
             <button className={this.clazz}
-            onClick={() => action(label, act)}>
+                onClick={() => onChange(label, act)}>
                 {label}
             </button>
         )
