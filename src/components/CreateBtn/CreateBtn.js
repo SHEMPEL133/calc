@@ -15,15 +15,14 @@ export default class CreateBtn extends Component {
         });
     };
 
-    addButton = (e) => {
-        // e.preventDefault();
-        let buttons = JSON.parse(localStorage.getItem('buttons'));
+    addButton = () => {
+        let buttons = JSON.parse(sessionStorage.getItem('buttons'));
         buttons.push({
             id: this.state.label,
             label: this.state.label,
             act: 'add'
         })
-        localStorage.setItem('buttons', JSON.stringify(buttons));
+        sessionStorage.setItem('buttons', JSON.stringify(buttons));
     }
 
 

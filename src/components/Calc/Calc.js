@@ -118,8 +118,15 @@ export default class Calc extends Component {
             }
     }
 
-    clearDispaly = () => {
-
+    saveHistory = (str) => {
+        let historyArray = sessionStorage.getItem('history');
+        let history = [];
+        if (historyArray) {
+            history = JSON.parse(historyArray);
+        }
+        history.push(str);
+        sessionStorage.setItem('history',JSON.stringify(history));
+        this.props.historyUpdate();
     }
 
     result = () => {
@@ -132,23 +139,29 @@ export default class Calc extends Component {
                 break;
             default: trueOperator = operator;
         }
+        const expression = previousValue + trueOperator + currentValue;
+        const result = eval(expression);
+        this.saveHistory(expression + '=' + result);
         this.setState({
-            currentValue: eval(previousValue + trueOperator + currentValue),
+            currentValue: eval(result),
             previousValue: '',
             operator: ''
         })
     }
 
+    getButtons = () => {
+        let btns = sessionStorage.getItem('buttons');
+        if (btns) {
+            return JSON.parse(btns);
+        }
+    }
 
     clazz = 'calc'
     render() {
 
         let { currentValue, previousValue, operator } = this.state;
-        let btns = localStorage.getItem('buttons');
-        let buttons = [];
-        if (btns) {
-            buttons = JSON.parse(btns);
-        }
+
+        let buttons = this.getButtons();
 
         return (
             <div className={this.clazz}>

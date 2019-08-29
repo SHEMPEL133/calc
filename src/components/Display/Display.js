@@ -12,8 +12,8 @@ export default class Dispay extends Component {
 
         return (
             <div className={this.clazz}>
-                <div>{previousValue + operator}</div>
-                <div>{currentValue}</div>
+                <div className>{previousValue + operator}</div>
+                <div className>{currentValue}</div>
             </div>
         )
     }

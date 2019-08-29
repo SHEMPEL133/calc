@@ -5,6 +5,7 @@ import './App.css';
 
 import Calc from '../Calc';
 import CreateBtn from '../CreateBtn';
+import History from '../History';
 
 
 
@@ -32,17 +33,19 @@ export default class App extends Component {
             { id: 'zero', label: '0', act: 'add' },
             { id: 'dot', label: '.', act: 'dot' },
             { id: 'equally', label: '=', act: 'equal' }
-        ]
+        ],
+        histUpdate: true
     }
 
     saveBtns = () => {
-        let btns = localStorage.getItem('buttons');
-        let buttons = [];
-        if (btns) {
-            buttons = JSON.parse(btns);
-        } else {
-            localStorage.setItem('buttons', JSON.stringify(this.state.buttons));
+        let btns = sessionStorage.getItem('buttons');
+        if (!btns) {
+            sessionStorage.setItem('buttons', JSON.stringify(this.state.buttons));
         }
+    }
+
+    historyUpdate = () => {
+        this.setState({ histUpdate: !this.state.histUpdate });
     }
 
     clazz = 'app'
@@ -57,7 +60,9 @@ export default class App extends Component {
                     <Link to="/">Home</Link>
                     <Link to="/add-new-button">Add</Link>
                     <Route exact path="/"  >
-                        <Route component={Calc} />
+                        {/* <Route component={Calc} /> */}
+                        <Route render={() => <Calc historyUpdate={this.historyUpdate}/>} />
+                        <Route component={History} />
                     </Route>
                     <Route path="/add-new-button" component={CreateBtn} />
                 </Router>
