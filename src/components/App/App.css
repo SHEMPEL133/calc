@@ -1,0 +1,31 @@
+.app {
+    display: flex;
+}
+
+.btn-link {
+    margin: 10px;
+    background: rgb(47, 211, 175);
+    border-radius: 50%;
+    text-decoration: none;
+    color: white;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-link:hover {
+    background: rgb(37, 177, 146);
+    text-shadow: 0 0 5px rgb(255, 255, 255);
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flexLayout {
+    display: flex;
+}

@@ -23,6 +23,7 @@ export default class CreateBtn extends Component {
             act: 'add'
         })
         sessionStorage.setItem('buttons', JSON.stringify(buttons));
+        //history.push('/');
     }
 
 
@@ -32,11 +33,9 @@ export default class CreateBtn extends Component {
                 <input type="text" className="add-input"
                     placeholder="Enter new button"
                     onChange={this.onLabelButtonChange} />
-                {/* <Link to="/"> */}
                     <button className="add-btn">
                         Add button
                     </button>
-                {/* </Link> */}
             </form>
         )
     }

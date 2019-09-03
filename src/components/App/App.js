@@ -6,6 +6,7 @@ import './App.css';
 import Calc from '../Calc';
 import CreateBtn from '../CreateBtn';
 import History from '../History';
+import UsersBox from '../UsersBox';
 
 
 
@@ -55,16 +56,22 @@ export default class App extends Component {
         this.saveBtns();
 
         return (
-            <div>
+            <div className={this.clazz}>
                 <Router>
-                    <Link to="/">Home</Link>
-                    <Link to="/add-new-button">Add</Link>
+                    <div className="flex-column">
+                        <Link to="/users" className="btn-link">Users</Link>
+                        <Link to="/" className="btn-link">Home</Link>
+                        <Link to="/add-new-button" className="btn-link">Add Button</Link>
+
+                    </div>
                     <Route exact path="/"  >
-                        {/* <Route component={Calc} /> */}
-                        <Route render={() => <Calc historyUpdate={this.historyUpdate}/>} />
-                        <Route component={History} />
+                        <div className="flexLayout">
+                            <Route render={() => <Calc historyUpdate={this.historyUpdate} />} />
+                            <Route component={History} />
+                        </div>
                     </Route>
                     <Route path="/add-new-button" component={CreateBtn} />
+                    <Route path="/users"  component={UsersBox}/>
                 </Router>
             </div>
         )

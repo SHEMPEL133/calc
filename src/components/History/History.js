@@ -5,7 +5,7 @@ import './History.css'
 export default class History extends Component {
 
     state = {
-        
+
     }
 
     render() {
@@ -21,7 +21,8 @@ export default class History extends Component {
         });
 
         return (
-            <div>
+            <div className="history">
+                <h2 className="history__title">History</h2>
                 {arr}
             </div>
         )

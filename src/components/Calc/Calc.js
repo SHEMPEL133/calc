@@ -125,12 +125,17 @@ export default class Calc extends Component {
             history = JSON.parse(historyArray);
         }
         history.push(str);
-        sessionStorage.setItem('history',JSON.stringify(history));
+        sessionStorage.setItem('history', JSON.stringify(history));
         this.props.historyUpdate();
     }
 
     result = () => {
         let { currentValue, previousValue, operator } = this.state;
+        
+        if (previousValue.length === 0) {
+            return
+        }
+        
         let trueOperator = '';
         switch (operator) {
             case '÷': trueOperator = '/';
@@ -139,7 +144,13 @@ export default class Calc extends Component {
                 break;
             default: trueOperator = operator;
         }
+
+        if(currentValue[0] === '-'){
+            currentValue = '(' + currentValue + ')';
+        }
+
         const expression = previousValue + trueOperator + currentValue;
+        console.log(expression);
         const result = eval(expression);
         this.saveHistory(expression + '=' + result);
         this.setState({

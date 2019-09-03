@@ -1,0 +1,21 @@
+.user-item {
+    height: 60px;
+    width: 400px;
+    background: rgb(81, 236, 211);
+    margin: 10px;
+    padding: 0 20px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.user-item_delete {
+    background: rgb(219, 49, 49);
+    justify-self: flex-end;
+}
+
+.user-item_edit {
+    background: grey;
+    justify-self: flex-end;
+}

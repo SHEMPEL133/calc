@@ -1,0 +1,12 @@
+.history {
+    width: 200px;
+    margin: 10px;
+    background: rgb(58, 221, 199);
+    border-radius: 30px;
+    padding: 10px 20px ;
+}
+
+.history__title {
+    text-align: center;
+    color: white;
+}   
