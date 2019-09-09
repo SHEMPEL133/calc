@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 
 import './App.css';
 
@@ -56,24 +56,30 @@ export default class App extends Component {
         this.saveBtns();
 
         return (
-            <div className={this.clazz}>
-                <Router>
+            // В Eror обернуть
+            <Router>
+                <div className={this.clazz}>
+
                     <div className="flex-column">
                         <Link to="/users" className="btn-link">Users</Link>
                         <Link to="/" className="btn-link">Home</Link>
                         <Link to="/add-new-button" className="btn-link">Add Button</Link>
-
                     </div>
-                    <Route exact path="/"  >
-                        <div className="flexLayout">
-                            <Route render={() => <Calc historyUpdate={this.historyUpdate} />} />
-                            <Route component={History} />
-                        </div>
-                    </Route>
-                    <Route path="/add-new-button" component={CreateBtn} />
-                    <Route path="/users"  component={UsersBox}/>
-                </Router>
-            </div>
+                    <Switch>
+                        <Route exact path="/"  >
+                            <div className="flexLayout">
+                                <Route render={() => <Calc historyUpdate={this.historyUpdate} />} />
+                                <Route component={History} />
+                            </div>
+                        </Route>
+                        <Route path="/add-new-button" component={CreateBtn} />
+                        <Route path="/users" component={UsersBox} />
+                    
+                    {/* <Redirect to="/"/> */}
+                    {/* Route component={Page not found} */}
+                    </Switch>
+                </div>
+            </Router>
         )
     }
 }
