@@ -1,11 +1,16 @@
 import React from 'react';
 import UserList from '../UserList';
 
-const UserListPage = () => {
+import { Route, withRouter } from 'react-router-dom';
+
+const UserListPage = ({ history }) => {
 
     return (
-        <UserList />
+        <UserList
+            onItemSelected={(itemId) => {
+                history.push(`/users/${itemId}`);
+            }} />
     );
 };
 
-export default UserListPage;
+export default withRouter(UserListPage);

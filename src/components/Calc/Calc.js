@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { withUsersService } from '../hoc';
 
 import Display from '../Display';
 import BtnBox from '../BtnBox';
@@ -186,13 +189,54 @@ import './Calc.css';
 //     }
 // }
 
-const Calc = ({ user }) => {
-    const { buttons } = user;
+const Calc = () => {
+    // const { buttons } = user;
     return (
-        <div>
-            <span>{buttons}</span>
+        <div className='calc'>
+            {/* <Display currentValue={currentValue}
+                previousValue={previousValue}
+                operator={operator} />
+            <BtnBox buttons={buttons}
+                onChange={this.onChange} /> */}
+
+            <Display currentValue={() => { }}
+                previousValue={() => { }}
+                operator={() => { }} />
+            <BtnBox buttons={() => { }}
+                onChange={() => { }} />
         </div>
     );
 };
 
-export default Calc;
+class CalcContainer extends Component {
+
+    componentDidMount() {
+
+    }
+
+    render() {
+        const { user } = this.props;
+
+        return <Calc
+            user={user} />
+    }
+}
+
+
+const mapStateToProps = () => {
+    return {  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    const { usersService } = ownProps;
+    return {
+        // fetchUsers: fetchUsers(usersService, dispatch),
+        // onEdit: (id) => dispatch(userRenamed(id)),
+        // onDelete: (id) => dispatch(userRemoved(id)),
+    }
+};
+
+export default compose(
+    withUsersService(),
+    connect(mapStateToProps, mapDispatchToProps)
+)(CalcContainer);

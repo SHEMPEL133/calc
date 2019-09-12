@@ -1,20 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './Display.css'
 
-export default class Dispay extends Component {
+const Display = (props) => {
 
-    clazz = 'display';
+    const { currentValue = '0',
+        previousValue = '0',
+        operator = '' } = props;
 
-    render() {
+    return (
+        <div className='display'>
+            {/* <div>{previousValue + operator}</div>
+            <div>{currentValue}</div> */}
+            <div>{10 + '+'}</div>
+            <div>18</div>
+        </div>
+    );
+};
 
-        const {currentValue, previousValue, operator} = this.props; 
-
-        return (
-            <div className={this.clazz}>
-                <div>{previousValue + operator}</div>
-                <div>{currentValue}</div>
-            </div>
-        )
-    }
-}
+export default Display;

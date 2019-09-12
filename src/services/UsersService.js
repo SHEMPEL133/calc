@@ -8,14 +8,15 @@ export default class UsersService {
     ];
 
     getUsers() {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if (Math.random() > 0.1) {
-                    resolve(this.data);
-                } else {
-                    reject(new Error('Bad!'))
-                }
-            }, 700);
-        });
+        // return new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //         if (Math.random() > 0.1) {
+        //             resolve(this.data);
+        //         } else {
+        //             reject(new Error('Bad!'))
+        //         }
+        //     }, 700);
+        // });
+        return this.data;
     }
 }

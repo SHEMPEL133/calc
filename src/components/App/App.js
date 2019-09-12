@@ -22,12 +22,12 @@ const App = () => {
                     component={HomePage}
                     exact />
                 <Route
-                    path='/users/'
+                    exact
+                    path='/users'
                     component={UserListPage} />
                 <Route
-                    path='/users/:id'
+                    path='/users/:id?'
                     component={UserPage} />
-                <Redirect to='/' />
             </Switch>
         </main>
     )

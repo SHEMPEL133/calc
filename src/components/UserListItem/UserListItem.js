@@ -1,16 +1,15 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
 
 import './UserListItem.css';
 
-const UserListItem = ({ user, onEdit, onDelete, history }) => {
+const UserListItem = ({ user, onEdit, onDelete, onItemSelected }) => {
     const { name, surname, id } = user;
     return (
         <li className="user-item">
             <div className="user-item_name">
                 <span
-                    onClick={() => history.push(`/users/${id}`)}>
-                        { name } {surname}
+                    onClick={() => onItemSelected(id)}>
+                    {name} {surname}
                 </span>
             </div>
             <button className="user-item_btn user-item_edit"
@@ -21,7 +20,7 @@ const UserListItem = ({ user, onEdit, onDelete, history }) => {
                 onClick={() => onDelete(id)}>
                 Delete
             </button>
-        </li>
+        </li >
     );
 };
 
@@ -42,4 +41,4 @@ const UserListItem = ({ user, onEdit, onDelete, history }) => {
 //     };
 // };
 
-export default withRouter(UserListItem);
+export default UserListItem;

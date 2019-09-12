@@ -10,13 +10,14 @@ import { fetchUsers, userRenamed, userRemoved } from '../../actions';
 
 import './UserList.css';
 
-const UserList = ({ users, onEdit, onDelete }) => {
+const UserList = ({ users, onEdit, onDelete, onItemSelected }) => {
     const usersArray = users.map((user) => {
         return <UserListItem
             user={user}
             key={user.id}
             onEdit={onEdit}
-            onDelete={onDelete} />
+            onDelete={onDelete}
+            onItemSelected={onItemSelected} />
     });
 
     return (
@@ -34,7 +35,7 @@ class UserListContainer extends Component {
 
     render() {
 
-        const { users, loading, error, onEdit, onDelete } = this.props;
+        const { users, loading, error, onEdit, onDelete, onItemSelected } = this.props;
 
         if (loading) {
             return <Spinner />;
@@ -47,7 +48,8 @@ class UserListContainer extends Component {
         return <UserList
             users={users}
             onEdit={onEdit}
-            onDelete={onDelete} />
+            onDelete={onDelete}
+            onItemSelected={onItemSelected} />
     }
 }
 
@@ -55,7 +57,7 @@ const mapStateToProps = ({ users, loading, error }) => {
     return { users, loading, error };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch, ownProps) => { 
     const { usersService } = ownProps;
     return {
         fetchUsers: fetchUsers(usersService, dispatch),
@@ -65,6 +67,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 };
 
 export default compose(
-    withUsersService(),
+    withUsersService(), 
     connect(mapStateToProps, mapDispatchToProps)
 )(UserListContainer);

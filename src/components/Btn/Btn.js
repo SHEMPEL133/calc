@@ -1,20 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+
+import { compose } from 'redux';
+import { withUsersService } from '../hoc';
+import { calcButtonClick } from '../../actions';
 
 import './Btn.css';
 
-export default class Btn extends Component {
+const Btn = ({ symbol, act, onButtonClick }) => {
 
-    clazz = 'btn';
+    return (
+        <button className='btn'
+            onClick={() => onButtonClick(symbol, act)}>
+            {symbol}
+        </button>
+    );
+};
 
-    render() {
+const mapStateToProps = () => {
+    return {};
+};
 
-        const { label, act, onChange } = this.props;
-
-        return (
-            <button className={this.clazz}
-                onClick={() => onChange(label, act)}>
-                {label}
-            </button>
-        )
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onButtonClick: (symbol, act) => calcButtonClick(symbol, act, dispatch)
     }
-}
+};
+
+export default compose(
+    withUsersService(),
+    connect(mapStateToProps, mapDispatchToProps)
+)(Btn);
