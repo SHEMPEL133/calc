@@ -15,14 +15,10 @@ const Btn = ({ symbol, act, onButtonClick, userId }) => {
     );
 };
 
-const mapStateToProps = () => {
-    return {};
-};
-
 const mapDispatchToProps = (dispatch) => {
     return {
         onButtonClick: (userId, symbol, act) => calcButtonClick(userId, symbol, act, dispatch)
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Btn);
+export default connect(null, mapDispatchToProps)(Btn);

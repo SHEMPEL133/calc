@@ -38,3 +38,11 @@
     margin-left: 10px;
     background: rgb(124, 118, 118);
 }
+
+.user-item_delete:hover {
+    background: rgb(206, 12, 12);
+}
+
+.user-item_edit:hover {
+    background: rgb(88, 86, 86);
+}

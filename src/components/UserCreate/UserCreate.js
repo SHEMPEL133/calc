@@ -31,17 +31,23 @@ class UserCreate extends Component {
 
         return (
             <div>
-                <div>
-                    <span>Name:</span>
-                    <input type="text" value={name}
-                        onChange={this.onNameChange} />
+                <h1 className='user-create-title'>New User</h1>
+                <div className='flex-box-column'>
+                    <div className='flex-box'>
+                        <span>Name:</span>
+                        <input className='form add-input '
+                            type="text" value={name}
+                            onChange={this.onNameChange} />
+                    </div>
+                    <div className='flex-box'>
+                        <span>Surname:</span>
+                        <input className='form add-input '
+                            type="text" value={surname}
+                            onChange={this.onSurnameChange} />
+                    </div>
                 </div>
-                <div>
-                    <span>Surname:</span>
-                    <input type="text" value={surname}
-                        onChange={this.onSurnameChange} />
-                </div>
-                <button onClick={() => this.props.userCreated( name, surname)}>
+                <button className='btn-link center'
+                    onClick={() => this.props.userCreated(name, surname)}>
                     Create
                 </button>
             </div>
@@ -51,12 +57,12 @@ class UserCreate extends Component {
 }
 
 const mapStateToProps = () => {
-    return { }
+    return {}
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        userCreated: ( name, surname) => {
+        userCreated: (name, surname) => {
             history.push('/users/');
             return dispatch(userCreated(name, surname));
         }

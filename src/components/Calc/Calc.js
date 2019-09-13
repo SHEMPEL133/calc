@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import Display from '../Display';
 import BtnBox from '../BtnBox';
@@ -16,13 +15,4 @@ const Calc = ({ id }) => {
     );
 };
 
-const mapStateToProps = () => {
-    return {};
-};
-
-const mapDispatchToProps = () => {
-    return {}
-};
-
-export default connect(mapStateToProps,
-    mapDispatchToProps)(Calc);
+export default Calc;

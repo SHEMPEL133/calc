@@ -23,9 +23,12 @@ const UserList = ({ users, error, onEdit, onDelete, onItemSelected }) => {
     });
 
     return (
-        <ul >
-            {usersArray}
-        </ul>
+        <div>
+            <h1 className='user-list-title'>USERS</h1>
+            <ul className='user-list'>
+                {usersArray}
+            </ul>
+        </div>
     )
 }
 

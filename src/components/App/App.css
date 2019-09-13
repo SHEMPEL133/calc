@@ -1,31 +1,69 @@
-.app {
-    display: flex;
+body{
+    margin: 0;
+    background: rgb(47, 211, 175);
 }
 
-.btn-link {
-    margin: 10px;
-    background: rgb(47, 211, 175);
-    border-radius: 50%;
+.app {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    max-width: 800px;
+    height: 100vh;
+    margin: auto;
+    background: white;
+}
+
+.btn-link{
+    background: rgb(58, 221, 199);
+    padding: 5px;
+    border: 0;
+    border-radius: 10px;
+    width: 120px;
+    display: block;
+    text-align: center;
     text-decoration: none;
     color: white;
-    width: 60px;
-    height: 60px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-weight: bold;
 }
 
 .btn-link:hover {
     background: rgb(37, 177, 146);
     text-shadow: 0 0 5px rgb(255, 255, 255);
+    cursor: pointer;
 }
 
-.flex-column {
+.center {
+    margin: auto
+}
+
+.flex-box {
+    margin: 10px 0;
+}
+
+.flex-box-column {
     display: flex;
     flex-direction: column;
+    align-content: center;
+    margin: 20px 0;
 }
 
-.flexLayout {
-    display: flex;
+.form {
+    margin: 0 10px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.add-input {
+    border-radius: 40px;
+    border: 1px solid rgb(3, 155, 230);
+    outline: none;
+    padding: 2px 10px;
+}
+
+.list-style-none{
+    list-style: none;
+}
+
+ul{
+    padding: 0;
 }

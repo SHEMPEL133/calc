@@ -8,37 +8,21 @@ const UserListItem = ({ user, onEdit, onDelete, onItemSelected }) => {
         <li className="user-item">
             <div className="user-item_name">
                 <span
+                    className="pointer"
                     onClick={() => onItemSelected(id)}>
                     {name} {surname}
                 </span>
             </div>
-            <button className="user-item_btn user-item_edit"
+            <button className="user-item_btn user-item_edit pointer"
                 onClick={() => onEdit(id)}>
                 Edit
             </button>
-            <button className="user-item_btn user-item_delete"
+            <button className="user-item_btn user-item_delete pointer"
                 onClick={() => onDelete(id)}>
                 Delete
             </button>
         </li >
     );
 };
-
-// const mapStateToProps = (state) => {
-//     return {
-
-//     };
-// };
-
-// const mapDispatchToProps = () => {
-//     return {
-//         onEdit: (id) => {
-//             console.log(`Edit ${id}`)
-//         },
-//         onDelete: (id) => {
-//             console.log(`Delete ${id}`)
-//         },
-//     };
-// };
 
 export default UserListItem;

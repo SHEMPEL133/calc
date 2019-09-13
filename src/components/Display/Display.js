@@ -18,8 +18,4 @@ const mapStateToProps = ({ currentValue, previousValue, operator }) => {
     return { currentValue, previousValue, operator };
 };
 
-const mapDispatchToProps = () => {
-    return {}
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Display);
+export default connect(mapStateToProps, null)(Display);

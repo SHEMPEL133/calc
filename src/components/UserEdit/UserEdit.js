@@ -14,9 +14,6 @@ class UserEdit extends Component {
         surname: this.props.surname,
     }
 
-    //сделать класс чтбы было состсояние 
-    // чтобы хранить ихменения name и surname
-
     onNameChange = (event) => {
         this.setState({
             name: event.target.value
@@ -31,24 +28,27 @@ class UserEdit extends Component {
 
     render() {
 
-        // console.log('props',this.props);
-        // console.log('state',this.state);
-
         const { id, name, surname } = this.state;
 
         return (
             <div>
-                <div>
-                    <span>Name:</span>
-                    <input type="text" value={name}
-                        onChange={this.onNameChange} />
+                <h1 className='user-create-title'>Editing</h1>
+                <div className='flex-box-column'>
+                    <div className='flex-box'>
+                        <span>Name:</span>
+                        <input className='form add-input '
+                            type="text" value={name}
+                            onChange={this.onNameChange} />
+                    </div>
+                    <div className='flex-box'>
+                        <span>Surname:</span>
+                        <input className='form add-input '
+                            type="text" value={surname}
+                            onChange={this.onSurnameChange} />
+                    </div>
                 </div>
-                <div>
-                    <span>Surname:</span>
-                    <input type="text" value={surname}
-                        onChange={this.onSurnameChange} />
-                </div>
-                <button onClick={() => this.props.userRenamed(id, name, surname)}>
+                <button className='btn-link center'
+                    onClick={() => this.props.userRenamed(id, name, surname)}>
                     Save
                 </button>
             </div>

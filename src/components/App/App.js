@@ -12,7 +12,7 @@ import CreateBtn from '../CreateBtn/CreateBtn';
 
 const App = () => {
     return (
-        <main className=''>
+        <main className='app'>
             <Header />
             <Switch>
                 <Route
@@ -41,7 +41,7 @@ const App = () => {
                     path='/users/:id/add-button'
                     render={({ history, match }) => {
                         const { id } = match.params;
-                        return <CreateBtn id={id} history={history}/>
+                        return <CreateBtn id={id} history={history} />
                     }} />
                 <Route
                     exact

@@ -8,14 +8,17 @@ import './pages.css';
 const UserPage = ({ history, id }) => {
 
     return (
-        <div className="flex-box">
-            <button
+        <div>
+            <h1 className='user-create-title'>Calculator</h1>
+            <div className="flex-box">
+                <Calc id={id} />
+                <History id={id} />
+            </div >
+            <button className='btn-link center'
                 onClick={() => history.push(`/users/${id}/add-button`)}>
                 Add button
             </button>
-            <Calc id={id} />
-            <History id={id} />
-        </div >
+        </div>
     )
 };
 

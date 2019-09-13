@@ -43,10 +43,6 @@ const reducer = (state, action) => {
         state = loadData();
     }
 
-    // console.log('state', state);
-
-    // console.log(action.type);
-
     switch (action.type) {
 
         case 'USER_RENAMED': {
@@ -89,7 +85,13 @@ const reducer = (state, action) => {
         }
 
         case 'USER_CREATED': {
-            const idx = state.users[state.users.length - 1].id + 1;
+            let idx;
+            if (state.users.length === 0) {
+                idx = 1
+            } else {
+                idx = state.users[state.users.length - 1].id + 1;
+            }
+
             const newUser = {
                 id: idx,
                 name: action.name,

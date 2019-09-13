@@ -1,3 +1,12 @@
+.home-page{
+    margin: auto;
+    text-align: center;
+    margin: 50px 0;
+    font-size: 68px;
+    color: rgb(58, 221, 199);
+    font-weight: bolder
+}
+
 .flex-box {
     display: flex;
     justify-content: center;

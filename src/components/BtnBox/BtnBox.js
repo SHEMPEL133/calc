@@ -5,7 +5,6 @@ import './BtnBox.css';
 
 import Btn from '../Btn';
 
-
 const defaultButtons = [
     { id: 'ce', symbol: 'CE', act: 'deleteCurrent' },
     { id: 'c', symbol: 'C', act: 'deleteAll' },
@@ -28,7 +27,6 @@ const defaultButtons = [
     { id: 'dot', symbol: '.', act: 'dot' },
     { id: 'equally', symbol: '=', act: 'equal' }
 ]
-
 
 const BtnBox = ({ buttons, userId }) => {
 
@@ -56,6 +54,7 @@ const BtnBox = ({ buttons, userId }) => {
         </div>
     );
 };
+
 const mapStateToProps = ({ users }, { userId }) => {
     const intId = parseInt(userId);
     const user = users.find((user) => (user.id === intId) ? true : false);
@@ -63,9 +62,4 @@ const mapStateToProps = ({ users }, { userId }) => {
     return { buttons }
 };
 
-const mapDispatchToProps = () => {
-    return {}
-};
-
-export default connect(mapStateToProps,
-    mapDispatchToProps)(BtnBox);
+export default connect(mapStateToProps,null)(BtnBox);

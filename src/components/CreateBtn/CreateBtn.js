@@ -20,22 +20,22 @@ class CreateBtn extends Component {
 
     render() {
         return (
-            <form onSubmit={() =>
-                this.props.buttonCreated(this.props.id, this.state.label)}>
-                <input type="text" className="add-input"
-                    placeholder="Enter new button"
-                    onChange={this.onLabelButtonChange} />
-                <button className="add-btn">
-                    Add button
+            <div>
+                <h1 className='user-create-title'>Create Button</h1>
+                <form className='flex-box'
+                    onSubmit={() =>
+                        this.props.buttonCreated(this.props.id, this.state.label)}>
+                    <input type="text" className="add-input form"
+                        placeholder="Enter new button"
+                        onChange={this.onLabelButtonChange} />
+                    <button className="btn-link">
+                        Add button
                     </button>
-            </form>
+                </form>
+            </div>
         )
     }
 }
-
-const mapStateToProps = () => {
-    return {}
-};
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -46,5 +46,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps,
-    mapDispatchToProps)(CreateBtn);
+export default connect(null, mapDispatchToProps)(CreateBtn);

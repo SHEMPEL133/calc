@@ -1,10 +1,8 @@
 import React from 'react';
 
 const HomePage = () => {
-
     return (
-        // <UserList />
-        <div>Home Page</div>
+        <div className='home-page'>Calc App</div>
     );
 };
 

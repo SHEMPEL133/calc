@@ -4,10 +4,18 @@ import { connect } from 'react-redux';
 import './History.css'
 
 const History = ({ history }) => {
+
+    let key = 0;
+    const historyArr = history.map((item) => {
+        return <li key={key++} className='list-style-none'>{item}</li>
+    })
+
     return (
-        <div className="history">
-            <h2 className="history__title">History</h2>
-            {history}
+        <div className='history'>
+            <h2 className='history__title'>History</h2>
+            <ul className='flex-box-column'>
+                {historyArr}
+            </ul>
         </div>
     )
 };
@@ -19,9 +27,4 @@ const mapStateToProps = ({ users }, { id }) => {
     return { history }
 };
 
-const mapDispatchToProps = () => {
-    return {}
-};
-
-export default connect(mapStateToProps,
-    mapDispatchToProps)(History);
+export default connect(mapStateToProps, null)(History);

@@ -5,10 +5,14 @@ import './Header.css';
 
 const Header = () => {
     return (
-        <div>
-            <Link to='/'>Home</Link>
-            <Link to='/users/'>Users</Link>
-        </div>
+        <ul className='header'>
+            <li>
+                <Link to='/'>Home</Link>
+            </li>
+            <li>
+                <Link to='/users/'>Users</Link>
+            </li>
+        </ul>
     )
 }
 
