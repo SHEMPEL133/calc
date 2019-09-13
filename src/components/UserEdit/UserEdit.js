@@ -67,7 +67,7 @@ const mapStateToProps = ({ users }, { id }) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         userRenamed: (id, name, surname) => {
-            history.push('/users/');
+            history.push('../');
             return dispatch(userRenamed(parseInt(id), name, surname));
         }
     }

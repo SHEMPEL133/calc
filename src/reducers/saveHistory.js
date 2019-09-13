@@ -16,7 +16,6 @@ const saveHistory = (state, userId, str) => {
         history: history,
     }
 
-    // const users = [...state.users];
     const newUsersArr = state.users.map((user) => {
         if (user.id === newUser.id) {
             return newUser;

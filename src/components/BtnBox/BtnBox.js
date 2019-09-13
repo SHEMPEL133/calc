@@ -32,12 +32,11 @@ const defaultButtons = [
 
 const BtnBox = ({ buttons, userId }) => {
 
-    // console.log(buttons);
     if (!buttons) {
         buttons = []
     }
 
-    const buttonsArray = [...defaultButtons, buttons];
+    const buttonsArray = [...defaultButtons, ...buttons];
 
     const arr = buttonsArray.map((item) => {
 

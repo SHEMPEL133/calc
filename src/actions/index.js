@@ -24,6 +24,14 @@ const userCreated = (name, surname) => {
     }
 }
 
+const buttonCreated = (userId, label) => {
+    return {
+        type: 'BUTTON_CREATED',
+        id: userId,
+        label: label
+    }
+}
+
 const calcButtonClick = (userId, symbol, act, dispatch) => {
 
     switch (act) {
@@ -71,4 +79,5 @@ export {
     userRemoved,
     userCreated,
     calcButtonClick,
+    buttonCreated
 };

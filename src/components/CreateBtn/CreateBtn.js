@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { buttonCreated } from '../../actions';
+import { history } from '../../utils';
 
 import './CreateBtn.css';
 
@@ -15,20 +18,10 @@ class CreateBtn extends Component {
         });
     };
 
-    addButton = () => {
-        let buttons = JSON.parse(sessionStorage.getItem('buttons'));
-        buttons.push({
-            id: this.state.label,
-            label: this.state.label,
-            act: 'add'
-        })
-        sessionStorage.setItem('buttons', JSON.stringify(buttons));
-        this.props.history.push('/');
-    }
-
     render() {
         return (
-            <form onSubmit={this.addButton}>
+            <form onSubmit={() =>
+                this.props.buttonCreated(this.props.id, this.state.label)}>
                 <input type="text" className="add-input"
                     placeholder="Enter new button"
                     onChange={this.onLabelButtonChange} />
@@ -40,4 +33,18 @@ class CreateBtn extends Component {
     }
 }
 
-export default withRouter(CreateBtn);
+const mapStateToProps = () => {
+    return {}
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        buttonCreated: (userId, label) => {
+            history.push('./');
+            return dispatch(buttonCreated(userId, label));
+        }
+    }
+};
+
+export default connect(mapStateToProps,
+    mapDispatchToProps)(CreateBtn);

@@ -8,8 +8,7 @@ import './App.css';
 import Header from '../Header';
 import UserEdit from '../UserEdit';
 import UserCreate from '../UserCreate';
-
-
+import CreateBtn from '../CreateBtn/CreateBtn';
 
 const App = () => {
     return (
@@ -27,16 +26,22 @@ const App = () => {
                 <Route
                     exact
                     path='/users/:id'
-                    render={({ match }) => {
+                    render={({ history, match }) => {
                         const { id } = match.params;
-                        return <UserPage id={id} />
+                        return <UserPage id={id} history={history} />
                     }}
-                    component={UserPage} />
+                />
                 <Route
                     path='/users/:id/edit'
                     render={({ match }) => {
                         const { id } = match.params;
                         return <UserEdit id={id} />
+                    }} />
+                <Route
+                    path='/users/:id/add-button'
+                    render={({ history, match }) => {
+                        const { id } = match.params;
+                        return <CreateBtn id={id} history={history}/>
                     }} />
                 <Route
                     exact
@@ -48,77 +53,3 @@ const App = () => {
 };
 
 export default App;
-
-// export default class App extends Component {
-
-//     state = {
-//         buttons: [
-//             { id: 'ce', label: 'CE', act: 'deleteCurrent' },
-//             { id: 'c', label: 'C', act: 'deleteAll' },
-//             { id: 'back', label: '←', act: 'back' },
-//             { id: 'division', label: '÷', act: 'div' },
-//             { id: 'seven', label: '7', act: 'add' },
-//             { id: 'eight', label: '8', act: 'add' },
-//             { id: 'nine', label: '9', act: 'add' },
-//             { id: 'multiplication', label: '×', act: 'multiplication' },
-//             { id: 'four', label: '4', act: 'add' },
-//             { id: 'five', label: '5', act: 'add' },
-//             { id: 'six', label: '6', act: 'add' },
-//             { id: 'minus', label: '-', act: 'minus' },
-//             { id: 'one', label: '1', act: 'add' },
-//             { id: 'two', label: '2', act: 'add' },
-//             { id: 'three', label: '3', act: 'add' },
-//             { id: 'plus', label: '+', act: 'plus' },
-//             { id: 'plus-minus', label: '±', act: 'inversion' },
-//             { id: 'zero', label: '0', act: 'add' },
-//             { id: 'dot', label: '.', act: 'dot' },
-//             { id: 'equally', label: '=', act: 'equal' }
-//         ],
-//         histUpdate: true
-//     }
-
-//     saveBtns = () => {
-//         let btns = sessionStorage.getItem('buttons');
-//         if (!btns) {
-//             sessionStorage.setItem('buttons', JSON.stringify(this.state.buttons));
-//         }
-//     }
-
-//     historyUpdate = () => {
-//         this.setState({ histUpdate: !this.state.histUpdate });
-//     }
-
-//     clazz = 'app'
-
-//     render() {
-
-//         this.saveBtns();
-
-//         return (
-//             // В Eror обернуть
-//             <Router>
-//                 <div className={this.clazz}>
-
-//                     <div className="flex-column">
-//                         <Link to="/users" className="btn-link">Users</Link>
-//                         <Link to="/" className="btn-link">Home</Link>
-//                         <Link to="/add-new-button" className="btn-link">Add Button</Link>
-//                     </div>
-//                     <Switch>
-//                         <Route exact path="/"  >
-//                             <div className="flexLayout">
-//                                 <Route render={() => <Calc historyUpdate={this.historyUpdate} />} />
-//                                 <Route component={History} />
-//                             </div>
-//                         </Route>
-//                         <Route path="/add-new-button" component={CreateBtn} />
-//                         <Route path="/users" component={UsersBox} />
-
-//                         {/* <Redirect to="/"/> */}
-//                         {/* Route component={Page not found} */}
-//                     </Switch>
-//                 </div>
-//             </Router>
-//         )
-//     }
-// }
