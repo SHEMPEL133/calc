@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-
+import { history } from './utils';
 import App from './components/App';
 import ErrorBoudry from './components/ErrorBoundry';
 import UsersService from './services/UsersService';
@@ -19,7 +19,7 @@ ReactDOM.render(
     <Provider store={store}>
         <ErrorBoudry>
             <UsersServiceProvider value={usersService}>
-                <Router>
+                <Router history={history}>
                     <App />
                 </Router>
             </UsersServiceProvider>

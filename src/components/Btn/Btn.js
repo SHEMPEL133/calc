@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { compose } from 'redux';
-import { withUsersService } from '../hoc';
 import { calcButtonClick } from '../../actions';
 
 import './Btn.css';
@@ -27,7 +25,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default compose(
-    withUsersService(),
-    connect(mapStateToProps, mapDispatchToProps)
-)(Btn);
+export default connect(mapStateToProps, mapDispatchToProps)(Btn);

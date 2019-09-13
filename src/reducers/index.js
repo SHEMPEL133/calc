@@ -15,7 +15,10 @@ const data = {
         { name: 'Nick', surname: 'Vonka', id: 1 },
         { name: 'Aria', surname: 'Stark', id: 2 },
         { name: 'Roz', surname: 'Zero', id: 3 },
-    ]
+    ],
+    previousValue: '',
+    currentValue: '0',
+    operator: '',
 }
 
 const reducer = (state = data, action) => {
@@ -44,7 +47,28 @@ const reducer = (state = data, action) => {
                 error: action.payload
             };
 
-        // CASE 'USER_RENAMED':
+        case 'USER_RENAMED':
+
+            const user = state.users.filter(({ id }) => id === action.id);
+            const newUser = {
+                ...user[0],
+                name: action.name,
+                surname: action.surname,
+            }
+
+            const users = [...state.users];
+            const newUsersArr = users.map((user) => {
+                if (user.id === newUser.id) {
+                    return newUser;
+                } else {
+                    return user;
+                }
+            })
+
+            return {
+                ...state,
+                users: newUsersArr,
+            };
 
         case 'USER_REMOVED':
             const userId = action.payload;
@@ -53,7 +77,6 @@ const reducer = (state = data, action) => {
                 ...state,
                 users: newUsers,
             };
-
 
         case 'CALC_ADD':
             return inputDigit(state, action.payload);
@@ -64,7 +87,6 @@ const reducer = (state = data, action) => {
         case 'CALC_DELETE_CURRENT':
             return deleteCurrent(state);
         case 'CALC_BACK':
-            console.log('tut');
             return back(state);
         case 'CALC_EQUAL':
             return result(state);

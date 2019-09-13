@@ -19,10 +19,12 @@ const usersError = (error) => {
     };
 };
 
-const userRenamed = (userId) => {
+const userRenamed = (id, name, surname) => {
     return {
         type: 'USER_RENAMED',
-        payload: userId,
+        id: id,
+        name: name, 
+        surname: surname,
     };
 };
 
@@ -32,13 +34,6 @@ const userRemoved = (userId) => {
         payload: userId,
     };
 };
-
-const fetchUsers = (usersService, dispatch) => () => {
-    dispatch(usersRequested());
-    usersService.getUsers();
-    // .then((data) => dispatch(usersLoaded(data)))
-    // .catch((err) => dispatch(usersError(err)));
-}
 
 const calcButtonClick = (symbol, act, dispatch) => {
 
@@ -116,7 +111,6 @@ const getButtons = () => {
 }
 
 export {
-    fetchUsers,
     userRenamed,
     userRemoved,
     calcButtonClick,

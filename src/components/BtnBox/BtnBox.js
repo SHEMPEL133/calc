@@ -31,7 +31,7 @@ const defaultButtons = [
 
 const BtnBox = (props) => {
 
-    let { buttons, onChange } = props;
+    let { buttons } = props;
 
     const buttonsArray = [...defaultButtons, buttons];
 

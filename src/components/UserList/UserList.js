@@ -1,16 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
-import { compose } from '../../utils';
-import { withUsersService } from '../hoc';
 import UserListItem from '../UserListItem';
-import Spinner from '../Spinner';
 import ErrorIndicator from '../ErrorIndicator';
-import { fetchUsers, userRenamed, userRemoved } from '../../actions';
+import { userRenamed, userRemoved } from '../../actions';
 
 import './UserList.css';
 
-const UserList = ({ users, onEdit, onDelete, onItemSelected }) => {
+const UserList = ({ users, error, onEdit, onDelete, onItemSelected }) => {
+
+    if (error) {
+        return <ErrorIndicator />;
+    }
+
     const usersArray = users.map((user) => {
         return <UserListItem
             user={user}
@@ -21,52 +23,22 @@ const UserList = ({ users, onEdit, onDelete, onItemSelected }) => {
     });
 
     return (
-        <ul className=''>
+        <ul >
             {usersArray}
         </ul>
     )
-};
-
-class UserListContainer extends Component {
-
-    componentDidMount() {
-        this.props.fetchUsers();
-    }
-
-    render() {
-
-        const { users, loading, error, onEdit, onDelete, onItemSelected } = this.props;
-
-        if (loading) {
-            return <Spinner />;
-        }
-
-        if (error) {
-            return <ErrorIndicator />;
-        }
-
-        return <UserList
-            users={users}
-            onEdit={onEdit}
-            onDelete={onDelete}
-            onItemSelected={onItemSelected} />
-    }
 }
 
-const mapStateToProps = ({ users, loading, error }) => {
-    return { users, loading, error };
+const mapStateToProps = ({ users, error }) => {
+    return { users, error };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => { 
-    const { usersService } = ownProps;
+const mapDispatchToProps = (dispatch) => {
     return {
-        fetchUsers: fetchUsers(usersService, dispatch),
-        onEdit: (id) => dispatch(userRenamed(id)),
+        // onEdit: (id) => dispatch(userRenamed(id)),
         onDelete: (id) => dispatch(userRemoved(id)),
     }
 };
 
-export default compose(
-    withUsersService(), 
-    connect(mapStateToProps, mapDispatchToProps)
-)(UserListContainer);
+export default connect(mapStateToProps,
+    mapDispatchToProps)(UserList);

@@ -19,6 +19,7 @@ const back = (state) => {
             currentValue: copyCurrentValue.slice(0, copyCurrentValue.length - 1)
         }
     }
+    return state;
 };
 
 export default back;

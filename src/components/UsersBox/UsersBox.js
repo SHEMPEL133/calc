@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import User from '../User';
-import UserPage from '../UserPage';
+import UserPage from '../UserEdit';
 
 import './UsersBox.css';
 

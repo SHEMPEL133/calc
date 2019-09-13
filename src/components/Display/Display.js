@@ -1,21 +1,25 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+
 import './Display.css'
 
-const Display = (props) => {
-
-    const { currentValue = '0',
-        previousValue = '0',
-        operator = '' } = props;
+const Display = ({ currentValue, previousValue, operator }) => {
 
     return (
         <div className='display'>
-            {/* <div>{previousValue + operator}</div>
-            <div>{currentValue}</div> */}
-            <div>{10 + '+'}</div>
-            <div>18</div>
+            <div>{previousValue + operator}</div>
+            <div>{currentValue}</div>
         </div>
     );
 };
 
-export default Display;
+const mapStateToProps = ({ currentValue, previousValue, operator }) => {
+    return { currentValue, previousValue, operator };
+};
+
+const mapDispatchToProps = () => {
+    return {}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Display);

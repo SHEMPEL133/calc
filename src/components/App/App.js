@@ -10,6 +10,8 @@ import CreateBtn from '../CreateBtn';
 import History from '../History';
 import UsersBox from '../UsersBox';
 import Header from '../Header';
+import UserEdit from '../UserEdit';
+
 
 
 const App = () => {
@@ -26,8 +28,16 @@ const App = () => {
                     path='/users'
                     component={UserListPage} />
                 <Route
-                    path='/users/:id?'
+                    exact
+                    path='/users/:id'
                     component={UserPage} />
+                <Route
+                    path='/users/:id/edit'
+
+                    render={({ match }) => {
+                        const { id } = match.params;
+                        return <UserEdit id={id} />
+                    }} />
             </Switch>
         </main>
     )

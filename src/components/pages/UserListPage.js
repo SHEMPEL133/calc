@@ -1,7 +1,7 @@
 import React from 'react';
 import UserList from '../UserList';
 
-import { Route, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const UserListPage = ({ history }) => {
 
@@ -9,6 +9,9 @@ const UserListPage = ({ history }) => {
         <UserList
             onItemSelected={(itemId) => {
                 history.push(`/users/${itemId}`);
+            }}
+            onEdit={(itemId) => {
+                history.push(`/users/${itemId}/edit`);
             }} />
     );
 };
