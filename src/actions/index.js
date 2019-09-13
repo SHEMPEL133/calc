@@ -4,7 +4,7 @@ const userRenamed = (id, name, surname) => {
     return {
         type: 'USER_RENAMED',
         id: id,
-        name: name, 
+        name: name,
         surname: surname,
     };
 };
@@ -24,7 +24,7 @@ const userCreated = (name, surname) => {
     }
 }
 
-const calcButtonClick = (symbol, act, dispatch) => {
+const calcButtonClick = (userId, symbol, act, dispatch) => {
 
     switch (act) {
         case 'add':
@@ -49,7 +49,10 @@ const calcButtonClick = (symbol, act, dispatch) => {
             return dispatch({ type: 'CALC_BACK' });
 
         case 'equal':
-            return dispatch({ type: 'CALC_EQUAL' });
+            return dispatch({
+                type: 'CALC_EQUAL',
+                payload: userId,
+            });
 
         case 'inversion':
             return dispatch({ type: 'CALC_INVERSION' });
@@ -62,42 +65,6 @@ const calcButtonClick = (symbol, act, dispatch) => {
 
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-const isExistDot = (str) => {
-    return str.indexOf('.') > 0 ? true : false
-}
-
-
-const saveHistory = (str) => {
-    let historyArray = sessionStorage.getItem('history');
-    let history = [];
-    if (historyArray) {
-        history = JSON.parse(historyArray);
-    }
-    history.push(str);
-    sessionStorage.setItem('history', JSON.stringify(history));
-    this.props.historyUpdate();
-}
-
-
-
-
-const getButtons = () => {
-    let btns = sessionStorage.getItem('buttons');
-    if (btns) {
-        return JSON.parse(btns);
-    }
-}
 
 export {
     userRenamed,

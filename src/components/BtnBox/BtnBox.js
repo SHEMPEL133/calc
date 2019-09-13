@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './BtnBox.css';
 
@@ -29,9 +30,12 @@ const defaultButtons = [
 ]
 
 
-const BtnBox = (props) => {
+const BtnBox = ({ buttons, userId }) => {
 
-    let { buttons } = props;
+    // console.log(buttons);
+    if (!buttons) {
+        buttons = []
+    }
 
     const buttonsArray = [...defaultButtons, buttons];
 
@@ -41,7 +45,9 @@ const BtnBox = (props) => {
         return (
             <Btn key={id}
                 symbol={symbol}
-                act={act} />
+                act={act}
+                userId={userId}
+            />
         )
     });
 
@@ -51,5 +57,16 @@ const BtnBox = (props) => {
         </div>
     );
 };
+const mapStateToProps = ({ users }, { userId }) => {
+    const intId = parseInt(userId);
+    const user = users.find((user) => (user.id === intId) ? true : false);
+    const { buttons } = user
+    return { buttons }
+};
 
-export default BtnBox;
+const mapDispatchToProps = () => {
+    return {}
+};
+
+export default connect(mapStateToProps,
+    mapDispatchToProps)(BtnBox);

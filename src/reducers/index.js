@@ -43,23 +43,22 @@ const reducer = (state, action) => {
         state = loadData();
     }
 
-    console.log('state', state);
+    // console.log('state', state);
 
-    console.log(action.type);
+    // console.log(action.type);
 
     switch (action.type) {
 
         case 'USER_RENAMED': {
 
-            const user = state.users.filter(({ id }) => id === action.id);
+            const user = state.users.find(({ id }) => id === action.id);
             const newUser = {
-                ...user[0],
+                ...user,
                 name: action.name,
                 surname: action.surname,
             }
 
-            const users = [...state.users];
-            const newUsersArr = users.map((user) => {
+            const newUsersArr = state.users.map((user) => {
                 if (user.id === newUser.id) {
                     return newUser;
                 } else {
@@ -117,7 +116,7 @@ const reducer = (state, action) => {
         case 'CALC_BACK':
             return back(state);
         case 'CALC_EQUAL':
-            return result(state);
+            return result(state, action.payload);
         case 'CALC_INVERSION':
             return inversion(state);
         case 'CALC_INPUT_OPERATOR':

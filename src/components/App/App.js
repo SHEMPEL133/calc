@@ -1,13 +1,10 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
 import { HomePage, UserPage, UserListPage } from '../pages';
 
 import './App.css';
 
-import Calc from '../Calc';
-import CreateBtn from '../CreateBtn';
-import History from '../History';
 import Header from '../Header';
 import UserEdit from '../UserEdit';
 import UserCreate from '../UserCreate';
@@ -30,6 +27,10 @@ const App = () => {
                 <Route
                     exact
                     path='/users/:id'
+                    render={({ match }) => {
+                        const { id } = match.params;
+                        return <UserPage id={id} />
+                    }}
                     component={UserPage} />
                 <Route
                     path='/users/:id/edit'

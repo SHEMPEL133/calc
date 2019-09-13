@@ -1,30 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 
 import './History.css'
 
-export default class History extends Component {
+const History = ({ history }) => {
+    return (
+        <div className="history">
+            <h2 className="history__title">History</h2>
+            {history}
+        </div>
+    )
+};
 
-    state = {
+const mapStateToProps = ({ users }, { id }) => {
+    const intId = parseInt(id);
+    const user = users.find((user) => (user.id === intId) ? true : false);
+    const { history } = user;
+    return { history }
+};
 
-    }
+const mapDispatchToProps = () => {
+    return {}
+};
 
-    render() {
-        let historyArr = [];
-        const history = sessionStorage.getItem('history');
-        if (history) {
-            historyArr = JSON.parse(history);
-        }
-
-        let i = 0;
-        let arr = historyArr.map((item) => {
-            return (<div key={i++}>{item}</div>)
-        });
-
-        return (
-            <div className="history">
-                <h2 className="history__title">History</h2>
-                {arr}
-            </div>
-        )
-    }
-}
+export default connect(mapStateToProps,
+    mapDispatchToProps)(History);

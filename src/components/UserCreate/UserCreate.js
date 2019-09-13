@@ -27,7 +27,7 @@ class UserCreate extends Component {
 
     render() {
 
-        const { id, name, surname } = this.state;
+        const { name, surname } = this.state;
 
         return (
             <div>

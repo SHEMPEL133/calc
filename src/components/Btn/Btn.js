@@ -5,11 +5,11 @@ import { calcButtonClick } from '../../actions';
 
 import './Btn.css';
 
-const Btn = ({ symbol, act, onButtonClick }) => {
+const Btn = ({ symbol, act, onButtonClick, userId }) => {
 
     return (
         <button className='btn'
-            onClick={() => onButtonClick(symbol, act)}>
+            onClick={() => onButtonClick(userId, symbol, act)}>
             {symbol}
         </button>
     );
@@ -21,7 +21,7 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onButtonClick: (symbol, act) => calcButtonClick(symbol, act, dispatch)
+        onButtonClick: (userId, symbol, act) => calcButtonClick(userId, symbol, act, dispatch)
     }
 };
 

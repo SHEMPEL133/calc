@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import UserListItem from '../UserListItem';
 import ErrorIndicator from '../ErrorIndicator';
-import { userRenamed, userRemoved } from '../../actions';
+import { userRemoved } from '../../actions';
 
 import './UserList.css';
 
@@ -12,8 +12,6 @@ const UserList = ({ users, error, onEdit, onDelete, onItemSelected }) => {
     if (error) {
         return <ErrorIndicator />;
     }
-
-    console.log(users);
 
     const usersArray = users.map((user) => {
         return <UserListItem
