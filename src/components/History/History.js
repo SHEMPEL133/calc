@@ -5,6 +5,10 @@ import './History.css'
 
 const History = ({ history }) => {
 
+    if (!history) {
+        history = []
+    }
+
     let key = 0;
     const historyArr = history.map((item) => {
         return <li key={key++} className='list-style-none'>{item}</li>
