@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { withUsersService } from '../hoc';
 
 import Display from '../Display';
 import BtnBox from '../BtnBox';
@@ -224,7 +222,7 @@ class CalcContainer extends Component {
 
 
 const mapStateToProps = () => {
-    return {  };
+    return {};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -236,7 +234,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 };
 
-export default compose(
-    withUsersService(),
-    connect(mapStateToProps, mapDispatchToProps)
-)(CalcContainer);
+export default connect(mapStateToProps,
+    mapDispatchToProps)(CalcContainer);

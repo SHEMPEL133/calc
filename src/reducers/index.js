@@ -10,7 +10,7 @@ import {
 } from './calc-function';
 
 
-const data = {
+const defaultData = {
     users: [
         { name: 'Nick', surname: 'Vonka', id: 1 },
         { name: 'Aria', surname: 'Stark', id: 2 },
@@ -21,33 +21,35 @@ const data = {
     operator: '',
 }
 
-const reducer = (state = data, action) => {
+const loadData = () => {
+    let data = localStorage.getItem('data');
+    if (!data) {
+        data = defaultData;
+        updateLocalStorage(data);
+    } else {
+        data = JSON.parse(data);
+    }
+    return data;
+};
+
+const updateLocalStorage = (state) => {
+    localStorage.setItem('data',
+        JSON.stringify(state));
+};
+
+const reducer = (state, action) => {
+
+    if (state === undefined) {
+        state = loadData();
+    }
+
+    console.log('state', state);
 
     console.log(action.type);
 
     switch (action.type) {
-        case 'FETCH_USERS_REQUEST':
-            return {
-                users: [],
-                loading: true,
-                error: null,
-            };
 
-        case 'FETCH_USERS_SUCCESS':
-            return {
-                users: action.payload,
-                loading: false,
-                error: null,
-            };
-
-        case 'FETCH_USERS_FAILURE':
-            return {
-                users: [],
-                loading: false,
-                error: action.payload
-            };
-
-        case 'USER_RENAMED':
+        case 'USER_RENAMED': {
 
             const user = state.users.filter(({ id }) => id === action.id);
             const newUser = {
@@ -65,18 +67,44 @@ const reducer = (state = data, action) => {
                 }
             })
 
-            return {
+            const newState = {
                 ...state,
                 users: newUsersArr,
-            };
+            }
 
-        case 'USER_REMOVED':
+            updateLocalStorage(newState);
+
+            return newState;
+        }
+
+        case 'USER_REMOVED': {
             const userId = action.payload;
             const newUsers = state.users.filter(({ id }) => id !== userId);
-            return {
+            const newState = {
                 ...state,
                 users: newUsers,
             };
+            updateLocalStorage(newState);
+
+            return newState;
+        }
+
+        case 'USER_CREATED': {
+            const idx = state.users[state.users.length - 1].id + 1;
+            const newUser = {
+                id: idx,
+                name: action.name,
+                surname: action.surname,
+            }
+            const newState = {
+                ...state,
+                users: [...state.users, newUser]
+            };
+
+            updateLocalStorage(newState);
+
+            return newState;
+        }
 
         case 'CALC_ADD':
             return inputDigit(state, action.payload);

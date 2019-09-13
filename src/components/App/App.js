@@ -8,9 +8,9 @@ import './App.css';
 import Calc from '../Calc';
 import CreateBtn from '../CreateBtn';
 import History from '../History';
-import UsersBox from '../UsersBox';
 import Header from '../Header';
 import UserEdit from '../UserEdit';
+import UserCreate from '../UserCreate';
 
 
 
@@ -33,11 +33,14 @@ const App = () => {
                     component={UserPage} />
                 <Route
                     path='/users/:id/edit'
-
                     render={({ match }) => {
                         const { id } = match.params;
                         return <UserEdit id={id} />
                     }} />
+                <Route
+                    exact
+                    path='/user-create'
+                    component={UserCreate} />
             </Switch>
         </main>
     )

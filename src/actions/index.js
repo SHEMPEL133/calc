@@ -1,23 +1,4 @@
 
-const usersLoaded = (newUsers) => {
-    return {
-        type: 'FETCH_USERS_SUCCESS',
-        payload: newUsers,
-    };
-};
-
-const usersRequested = () => {
-    return {
-        type: 'FETCH_USERS_REQUESTED',
-    };
-};
-
-const usersError = (error) => {
-    return {
-        type: 'FETCH_USERS_FAILURE',
-        payload: error,
-    };
-};
 
 const userRenamed = (id, name, surname) => {
     return {
@@ -34,6 +15,14 @@ const userRemoved = (userId) => {
         payload: userId,
     };
 };
+
+const userCreated = (name, surname) => {
+    return {
+        type: 'USER_CREATED',
+        name: name,
+        surname: surname,
+    }
+}
 
 const calcButtonClick = (symbol, act, dispatch) => {
 
@@ -113,5 +102,6 @@ const getButtons = () => {
 export {
     userRenamed,
     userRemoved,
+    userCreated,
     calcButtonClick,
 };

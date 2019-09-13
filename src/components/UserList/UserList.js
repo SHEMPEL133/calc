@@ -13,6 +13,8 @@ const UserList = ({ users, error, onEdit, onDelete, onItemSelected }) => {
         return <ErrorIndicator />;
     }
 
+    console.log(users);
+
     const usersArray = users.map((user) => {
         return <UserListItem
             user={user}
@@ -29,13 +31,12 @@ const UserList = ({ users, error, onEdit, onDelete, onItemSelected }) => {
     )
 }
 
-const mapStateToProps = ({ users, error }) => {
-    return { users, error };
+const mapStateToProps = ({ users }) => {
+    return { users };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // onEdit: (id) => dispatch(userRenamed(id)),
         onDelete: (id) => dispatch(userRemoved(id)),
     }
 };
